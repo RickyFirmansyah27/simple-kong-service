@@ -27,7 +27,7 @@ Setelah menginstal layanan Echo, Anda dapat menerapkan pembatasan kecepatan (rat
 1. **Terapkan rate limit dan anotasi ke layanan Echo:**
 
    ```bash
-   kubectl annotate service echo konghq.com/plugins=rate-limit-5-min,key-auth --overwrite
+   kubectl annotate service echo konghq.com/plugins=rate-limit-5-min --overwrite
 2. **Uji rate limit ke layanan Echo:**
 
    ```bash
@@ -40,7 +40,7 @@ Setelah menginstal layanan Echo, Anda dapat menerapkan pembatasan kecepatan (rat
    ```
 3. **Tambahkan key-auth ke layanan Echo:**
    ```bash
-   kubectl annotate service echo konghq.com/plugins=key-auth --overwrite
+   kubectl annotate service echo konghq.com/plugins=rate-limit-5-min,key-auth --overwrite
    ```
    ```bash
    Invoke-WebRequest -Uri "http://$env:PROXY_IP/echo" -Headers @{ "apikey" = "hello_world" }
