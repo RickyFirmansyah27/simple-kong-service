@@ -49,10 +49,11 @@ Setelah menginstal layanan Echo, Anda dapat menerapkan pembatasan kecepatan (rat
 #notes
 Berikut beberapa perintah Kubernetes (K8s) yang mungkin berguna:
 
-Untuk melihat daftar pod: kubectl get pods
-Untuk melihat daftar deployment: kubectl get deployment -A
-Untuk melihat daftar HTTP route: kubectl get httproute
-Untuk melihat daftar service: kubectl get svc
+list panggilan pada k8s
+ - kubectl get pods
+ - kubectl get deployment -A
+ - kubectl get httproute
+ - kubectl get svc
 
 ##Jika Anda mengalami kesalahan saat melakukan pull dari repository:
 
