@@ -28,18 +28,23 @@ Setelah menginstal layanan Echo, Anda dapat menerapkan pembatasan kecepatan (rat
 
    ```bash
    kubectl annotate service echo konghq.com/plugins=rate-limit-5-min,key-auth --overwrite
+2. **Uji rate limit ke layanan Echo:**
 
-$env:PROXY_IP = "localhost:80"
-foreach ($i in 1..6) {
-    Invoke-WebRequest -Uri "http://$env:PROXY_IP/echo" -UseBasicParsing -Method Get | Select-Object -ExpandProperty Headers
-}
-
-Anotasi Key-Auth pada Layanan Echo
-Jangan lupa untuk menambahkan anotasi key-auth pada layanan Echo setelah melakukan konfigurasi lainnya:
-
-bash
-kubectl annotate service echo konghq.com/plugins=key-auth --overwrite
-Invoke-WebRequest -Uri "http://$env:PROXY_IP/echo" -Headers @{ "apikey" = "hello_world" }
+   ```bash
+   $env:PROXY_IP = "localhost:80"
+   ```
+   ```bash
+   foreach ($i in 1..6) {
+       Invoke-WebRequest -Uri "http://$env:PROXY_IP/echo" -UseBasicParsing -Method Get | Select-Object -ExpandProperty Headers
+   }
+   ```
+3. **Tambahkan key-auth ke layanan Echo:**
+   ```bash
+   kubectl annotate service echo konghq.com/plugins=key-auth --overwrite
+   ```
+   ```bash
+   Invoke-WebRequest -Uri "http://$env:PROXY_IP/echo" -Headers @{ "apikey" = "hello_world" }
+   ```
 
 #notes
 Berikut beberapa perintah Kubernetes (K8s) yang mungkin berguna:
@@ -51,10 +56,11 @@ Untuk melihat daftar service: kubectl get svc
 
 ##Jika Anda mengalami kesalahan saat melakukan pull dari repository:
 
-bash
+```bash
 kubectl rollout restart deployment nama-deployment
-
+```
 #Untuk melihat semua objek Kong yang ada di namespace kong:
 
-bash
+```bash
 kubectl get all -n kong
+```
