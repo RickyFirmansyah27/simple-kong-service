@@ -46,21 +46,20 @@ Setelah menginstal layanan Echo, Anda dapat menerapkan pembatasan kecepatan (rat
    Invoke-WebRequest -Uri "http://$env:PROXY_IP/echo" -Headers @{ "apikey" = "hello_world" }
    ```
 
-#notes
-Berikut beberapa perintah Kubernetes (K8s) yang mungkin berguna:
+## Berikut beberapa perintah Kubernetes (K8s) yang mungkin berguna:
 
-list panggilan pada k8s
+**list panggilan pada k8s**
  - kubectl get pods
  - kubectl get deployment -A
  - kubectl get httproute
  - kubectl get svc
 
-##Jika Anda mengalami kesalahan saat melakukan pull dari repository:
+## Jika Anda mengalami kesalahan saat melakukan pull dari repository:
 
 ```bash
 kubectl rollout restart deployment nama-deployment
 ```
-#Untuk melihat semua objek Kong yang ada di namespace kong:
+## Untuk melihat semua objek Kong yang ada di namespace kong:
 
 ```bash
 kubectl get all -n kong
