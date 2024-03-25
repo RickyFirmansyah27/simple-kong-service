@@ -1,7 +1,39 @@
-# Support
-If you find this repository is useful. Please support me through link below so i can create more helpful content for other developers
-[![Coffee](https://badgen.net/badge/Buy%20Me/A%20Coffee/purple?icon=kofi)](https://www.buymeacoffee.com/vousmeevoyez)
+setup
+install kong and etc
+make plugin and network
 
-# Setup Kong + Konga using Docker compose
-This repository contains required file for running Kong + Konga using Docker
-you can checkout the article in [here](https://dev.to/vousmeevoyez/setup-kong-konga-part-2-dan)
+install echo sample service
+
+make rate limit and annotate to echo service
+
+set env 
+$env:PROXY_IP = "localhost:80"
+
+set invoker for powershell
+foreach ($i in 1..6) {
+    Invoke-WebRequest -Uri "http://$env:PROXY_IP/echo" -UseBasicParsing -Method Get | Select-Object -ExpandProperty Headers
+}
+
+dont forget anotate key-auth to echo service
+kubectl annotate service echo konghq.com/plugins=rate-limit-5-min,key-auth --overwrite
+
+after set key-auth, key-secret and key-consume
+Invoke-WebRequest -Uri "http://$env:PROXY_IP/echo" -Headers @{ "apikey" = "hello_world" }
+
+
+#notes
+command kubernetes (k8s)
+
+- kubectl get pods 
+- kubectl get deployment -A
+- kubectl get httproute
+- kubctl get svc
+- kubctl etc
+
+apply -f = create depl (yaml or conf)
+
+atasi gagal pull
+kubectl rollout restart deployment nama-depl
+
+get all kong
+kubectl get all -n kong
