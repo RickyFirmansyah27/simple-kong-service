@@ -1,4 +1,4 @@
-setup
+#setup instalation kong api gateway
 install kong and etc
 make plugin and network
 
